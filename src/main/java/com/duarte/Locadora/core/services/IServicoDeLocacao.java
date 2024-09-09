@@ -8,7 +8,7 @@ import java.util.Optional;
 
 public interface IServicoDeLocacao {
     Locacao criarLocacao(Integer id_clientes);
-    void adicionarJogoALocacao(Integer id, ItemLocacao novoItem);
+    void adicionarJogoALocacao(Integer id,Integer dias, JogoPlataforma jogoPlataforma);
     BigDecimal calcularCustoTotal(Integer id);
 
 }

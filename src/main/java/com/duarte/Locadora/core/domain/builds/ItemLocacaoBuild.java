@@ -2,24 +2,26 @@ package com.duarte.Locadora.core.domain.builds;
 
 
 import com.duarte.Locadora.core.domain.entity.ItemLocacao;
+import com.duarte.Locadora.core.domain.entity.JogoPlataforma;
+import com.duarte.Locadora.core.domain.entity.Locacao;
 import com.duarte.Locadora.core.port.IJogoPlataformaPort;
 
 import com.duarte.Locadora.core.port.ILocacaoPort;
+import org.springframework.stereotype.Component;
 
 
-
+@Component
 public class ItemLocacaoBuild {
 
-    private ItemLocacao itemLocacao;
+    private ItemLocacao itemLocacao = new ItemLocacao();
 
 
-    public ItemLocacaoBuild addLocacao (int id, ILocacaoPort locacaoPort){
-        this.itemLocacao.setLocacao(locacaoPort.buscarPorId(id));
+    public ItemLocacaoBuild addLocacao (Locacao locacao){
+        this.itemLocacao.setLocacao(locacao);
         return this;
     }
 
-    public ItemLocacaoBuild addJogoplataforma (Integer id_jogo, Integer id_plataforma,IJogoPlataformaPort jogoPlataformaPort){
-        var jogoPlataforma = jogoPlataformaPort.buscar(id_jogo, id_plataforma);
+    public ItemLocacaoBuild addJogoplataforma (JogoPlataforma jogoPlataforma){
         this.itemLocacao.setJogoPlataforma(jogoPlataforma);
         return this;
     }

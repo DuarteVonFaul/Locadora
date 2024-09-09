@@ -23,6 +23,9 @@ public class Locacao {
     @OneToMany(mappedBy = "locacao", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ItemLocacao> itens;
 
+    public Locacao(){
+
+    }
     public Locacao(Cliente cliente) {
         this.setCliente(cliente);
         this.setData(LocalDate.now());

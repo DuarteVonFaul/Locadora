@@ -1,6 +1,7 @@
 package com.duarte.Locadora.adapters.input.web;
 
 import com.duarte.Locadora.adapters.output.ClienteOut;
+import com.duarte.Locadora.adapters.output.JogoPlataformaOut;
 import com.duarte.Locadora.adapters.output.LocacaoOut;
 import com.duarte.Locadora.core.services.LocacaoService;
 import com.duarte.Locadora.core.domain.entity.*;
@@ -18,6 +19,8 @@ public class LocacaoController {
     @Autowired
     private final LocacaoService locacaoService = new LocacaoService(new LocacaoOut(),
                                                                      new ClienteOut());
+    @Autowired
+    private JogoPlataformaOut jogoPlataformaOut = new JogoPlataformaOut();
 
     @PostMapping
     public ResponseEntity<Locacao> criarLocacao(@RequestParam Integer idCliente) {
@@ -27,8 +30,12 @@ public class LocacaoController {
 
     @PostMapping("/{id}/jogos")
     public ResponseEntity<Void> adicionarJogoALocacao(@PathVariable Integer id,
-                                                      @RequestBody ItemLocacao request) {
-        locacaoService.adicionarJogoALocacao(id,request);
+                                                      @RequestParam Integer idJogo,
+                                                      @RequestParam Integer idPlataforma,
+                                                      @RequestParam Integer Dias) {
+
+        var jogoPlataforma = jogoPlataformaOut.buscar(idJogo,idPlataforma);
+        locacaoService.adicionarJogoALocacao(id,Dias,jogoPlataforma);
         return ResponseEntity.ok().build();
     }
 

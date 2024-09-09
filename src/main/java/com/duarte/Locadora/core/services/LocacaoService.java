@@ -1,6 +1,8 @@
 package com.duarte.Locadora.core.services;
 
+import com.duarte.Locadora.core.domain.builds.ItemLocacaoBuild;
 import com.duarte.Locadora.core.domain.entity.ItemLocacao;
+import com.duarte.Locadora.core.domain.entity.JogoPlataforma;
 import com.duarte.Locadora.core.domain.entity.Locacao;
 import com.duarte.Locadora.core.port.IClientePort;
 import com.duarte.Locadora.core.port.ILocacaoPort;
@@ -25,9 +27,13 @@ public class LocacaoService implements IServicoDeLocacao {
     }
 
     @Override
-    public void adicionarJogoALocacao(Integer id, ItemLocacao novoItem) {
+    public void adicionarJogoALocacao(Integer id,Integer dias, JogoPlataforma jogoPlataforma) {
         Locacao locacao = this.locacaoPort.buscarPorId(id);
         if(locacao != null){
+            var novoItem = new ItemLocacaoBuild().addLocacao(locacao)
+                                                .addJogoplataforma(jogoPlataforma)
+                                                .addDias(dias)
+                                                .build();
             novoItem.setLocacao(locacao);
             locacao.getItens().add(novoItem);
             this.locacaoPort.atualizar(locacao);
