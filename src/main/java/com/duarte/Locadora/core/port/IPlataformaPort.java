@@ -1,7 +1,7 @@
-package com.duarte.Locadora.core.domain.repository;
+package com.duarte.Locadora.core.port;
 
 import com.duarte.Locadora.core.domain.entity.Plataforma;
 
-public interface IPlataformaRepository {
+public interface IPlataformaPort {
     Plataforma buscarPorId(Integer id);
 }

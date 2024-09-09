@@ -4,6 +4,7 @@ package com.duarte.Locadora.core.domain.entity;
 import jakarta.persistence.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.Collections;
 import java.util.List;
 
 @Entity
@@ -22,6 +23,11 @@ public class Locacao {
     @OneToMany(mappedBy = "locacao", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ItemLocacao> itens;
 
+    public Locacao(Cliente cliente) {
+        this.setCliente(cliente);
+        this.setData(LocalDate.now());
+        this.setItens(Collections.emptyList());
+    }
 
     public Integer getId() {
         return id;

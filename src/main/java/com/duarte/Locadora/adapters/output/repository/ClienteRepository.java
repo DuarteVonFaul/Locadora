@@ -1,16 +1,10 @@
 package com.duarte.Locadora.adapters.output.repository;
 
 import com.duarte.Locadora.core.domain.entity.Cliente;
-import com.duarte.Locadora.core.domain.repository.IClienteRepository;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.PersistenceContext;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-public class ClienteRepository implements IClienteRepository {
-    @PersistenceContext
-    private EntityManager entityManager;
 
-    @Override
-    public Cliente buscarPorId(Integer id) {
-        return entityManager.find(Cliente.class, id);
-    }
+@Repository
+public interface ClienteRepository extends JpaRepository<Cliente, Integer> {
 }

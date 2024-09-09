@@ -1,14 +1,14 @@
-package com.duarte.Locadora.adapters.output.repository;
+package com.duarte.Locadora.adapters.output;
 
 import com.duarte.Locadora.core.domain.entity.Jogo;
 import com.duarte.Locadora.core.domain.entity.JogoPlataforma;
 import com.duarte.Locadora.core.domain.entity.Plataforma;
-import com.duarte.Locadora.core.domain.repository.IJogoPlataformaRepository;
+import com.duarte.Locadora.core.port.IJogoPlataformaPort;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import jakarta.persistence.TypedQuery;
 
-public class JogoPlataformaRepository implements IJogoPlataformaRepository {
+public class JogoPlataformaOut implements IJogoPlataformaPort {
 
     @PersistenceContext
     private EntityManager entityManager;
