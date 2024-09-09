@@ -17,7 +17,7 @@ public class ItemLocacao {
     private Locacao locacao;
 
     @ManyToOne
-    @JoinColumn(name = "jogo_id", nullable = false)
+    @JoinColumn(name = "jogoPlataforma_id", nullable = false)
     private JogoPlataforma jogoPlataforma;
 
 
