@@ -18,11 +18,8 @@ public class ItemLocacao {
 
     @ManyToOne
     @JoinColumn(name = "jogo_id", nullable = false)
-    private Jogo jogo;
+    private JogoPlataforma jogoPlataforma;
 
-    @ManyToOne
-    @JoinColumn(name = "plataforma_id", nullable = false)
-    private Plataforma plataforma;
 
     public Integer getId() {
         return id;
@@ -30,6 +27,14 @@ public class ItemLocacao {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public JogoPlataforma getJogoPlataforma() {
+        return jogoPlataforma;
+    }
+
+    public void setJogoPlataforma(JogoPlataforma jogoPlataforma) {
+        this.jogoPlataforma = jogoPlataforma;
     }
 
     public Integer getDias() {
@@ -48,19 +53,4 @@ public class ItemLocacao {
         this.locacao = locacao;
     }
 
-    public Jogo getJogo() {
-        return jogo;
-    }
-
-    public void setJogo(Jogo jogo) {
-        this.jogo = jogo;
-    }
-
-    public Plataforma getPlataforma() {
-        return plataforma;
-    }
-
-    public void setPlataforma(Plataforma plataforma) {
-        this.plataforma = plataforma;
-    }
 }

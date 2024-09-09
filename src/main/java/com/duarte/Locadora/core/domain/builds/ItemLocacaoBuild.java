@@ -1,9 +1,12 @@
 package com.duarte.Locadora.core.domain.builds;
 
+import com.duarte.Locadora.core.domain.entity.ChavesCompostas.JogoPlataformaId;
 import com.duarte.Locadora.core.domain.entity.ItemLocacao;
+import com.duarte.Locadora.core.port.IJogoPlataformaPort;
 import com.duarte.Locadora.core.port.IJogoPort;
 import com.duarte.Locadora.core.port.ILocacaoPort;
 import com.duarte.Locadora.core.port.IPlataformaPort;
+
 
 public class ItemLocacaoBuild {
 
@@ -15,8 +18,10 @@ public class ItemLocacaoBuild {
         return this;
     }
 
-    public ItemLocacaoBuild addJogo (int id, IJogoPort jogoPort){
-        this.itemLocacao.setJogo(jogoPort.buscarPorId(id));
+    public ItemLocacaoBuild addJogoplataforma (JogoPlataformaId id, IJogoPlataformaPort jogoPlataformaPort){
+        var jogoPlataforma = jogoPlataformaPort.buscar(id);
+        this.itemLocacao.setJogo(jogoPlataforma.getJogo());
+        this.itemLocacao.setPlataforma(jogoPlataforma.getPlataforma());
         return this;
     }
 

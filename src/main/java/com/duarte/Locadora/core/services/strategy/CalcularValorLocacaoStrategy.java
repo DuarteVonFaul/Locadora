@@ -16,15 +16,13 @@ public class CalcularValorLocacaoStrategy implements ICalculoCustoStrategy {
 
     @Override
     public BigDecimal calcularCusto() {
-        return itens.stream()
-                .map(item -> {
-                    JogoPlataforma jogoPlataforma = item.getJogo().getPrecosPorPlataforma().stream()
-                            .filter(jp -> jp.getPlataforma().equals(item.getPlataforma()))
-                            .findFirst()
-                            .orElseThrow(() -> new RuntimeException("Preço para a plataforma não encontrado"));
-                    return jogoPlataforma.getPrecoDiario().multiply(new BigDecimal(item.getDias()));
-                })
-                .reduce(BigDecimal.ZERO, BigDecimal::add);
+        BigDecimal value = new BigDecimal(0);
+
+        for( ItemLocacao item : this.itens){
+            value = value.add(new BigDecimal(item.getDias()).multiply(item.getJogoPlataforma().getPrecoDiario()));
+        }
+
+        return value;
     }
 
 

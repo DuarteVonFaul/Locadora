@@ -1,5 +1,6 @@
 package com.duarte.Locadora.adapters.output;
 
+import com.duarte.Locadora.core.domain.entity.ChavesCompostas.JogoPlataformaId;
 import com.duarte.Locadora.core.domain.entity.Jogo;
 import com.duarte.Locadora.core.domain.entity.JogoPlataforma;
 import com.duarte.Locadora.core.domain.entity.Plataforma;
@@ -14,11 +15,7 @@ public class JogoPlataformaOut implements IJogoPlataformaPort {
     private EntityManager entityManager;
 
     @Override
-    public JogoPlataforma buscar(Jogo jogo, Plataforma plataforma) {
-        String jpql = "SELECT jp.jogo FROM JogoPlataforma jp WHERE jp.jogo.id = :jogoId AND jp.plataforma.id = :plataformaId";
-        TypedQuery<JogoPlataforma> query = entityManager.createQuery(jpql, JogoPlataforma.class);
-        query.setParameter("jogoId", jogo.getId());
-        query.setParameter("plataformaId", plataforma.getId());
-        return query.getResultStream().findFirst().orElse(null);
+    public JogoPlataforma buscar(JogoPlataformaId id) {
+        return null;
     }
 }
